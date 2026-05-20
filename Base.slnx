@@ -3,5 +3,6 @@
     <File Path="LICENSE.txt" />
     <File Path="README.md" />
   </Folder>
+  <Project Path="MarcusRunge.Base.Tests/MarcusRunge.Base.Tests.csproj" Id="b6c419d4-9dd8-490d-93c4-f3d0ae8d297b" />
   <Project Path="MarcusRunge.Base/MarcusRunge.Base.csproj" />
 </Solution>
