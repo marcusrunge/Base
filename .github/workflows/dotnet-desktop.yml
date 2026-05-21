@@ -1,0 +1,33 @@
+name: .NET Build & Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+        
+    - name: Restore
+      run: dotnet restore MarcusRunge.slnx
+
+    - name: Build
+      run: dotnet build MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-restore
+
+    - name: Test
+      run: dotnet test MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-build --verbosity normal
