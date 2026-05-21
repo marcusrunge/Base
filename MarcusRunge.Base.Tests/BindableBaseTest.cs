@@ -1,4 +1,4 @@
-﻿namespace MarcusRunge.Base.Tests
+﻿namespace MarcusRunge.Base.Test
 {
     public class BindableBaseTest
     {

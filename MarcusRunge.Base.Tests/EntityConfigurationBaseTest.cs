@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace MarcusRunge.Base.Tests
+namespace MarcusRunge.Base.Test
 {
     public class EntityConfigurationBaseTest
     {

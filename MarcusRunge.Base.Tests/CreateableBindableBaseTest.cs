@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MarcusRunge.Base.Tests
+namespace MarcusRunge.Base.Test
 {
     public class CreateableBindableBaseTest
     {
@@ -122,27 +122,17 @@ namespace MarcusRunge.Base.Tests
             {
             }
 
-            protected override Task OnCreateAsync(object @base, CancellationToken cancellationToken)
-            {
-                throw new InvalidOperationException("Boom");
-            }
+            protected override Task OnCreateAsync(object @base, CancellationToken cancellationToken) => throw new InvalidOperationException("Boom");
         }
 
-        private sealed class TestCreateable
-                    : CreateableBindableBase<ITestCreateable, TestCreateable, object>,
-              ITestCreateable
+        private sealed class TestCreateable : CreateableBindableBase<ITestCreateable, TestCreateable, object>, ITestCreateable
         {
             public static int AsyncCallCount;
             public static int SyncCreateCount;
 
-            protected override void OnCreate(object @base)
-            {
-                Interlocked.Increment(ref SyncCreateCount);
-            }
+            protected override void OnCreate(object @base) => Interlocked.Increment(ref SyncCreateCount);
 
-            protected override async Task OnCreateAsync(
-                object @base,
-                CancellationToken cancellationToken)
+            protected override async Task OnCreateAsync(object @base, CancellationToken cancellationToken)
             {
                 Interlocked.Increment(ref AsyncCallCount);
                 await Task.Delay(10, cancellationToken);

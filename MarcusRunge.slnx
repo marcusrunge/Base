@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Projektmappenelemente/">
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="MarcusRunge.Base.Tests/MarcusRunge.Base.Test.csproj" Id="b6c419d4-9dd8-490d-93c4-f3d0ae8d297b" />
+  <Project Path="MarcusRunge.Base/MarcusRunge.Base.csproj" />
+  <Project Path="MarcusRunge.Toolbox.Test/MarcusRunge.Toolbox.Test.csproj" Id="d5273a76-ec7b-4fe9-8d66-79ead4e265ab" />
+  <Project Path="MarcusRunge.Toolbox/MarcusRunge.Toolbox.csproj" Id="cd09d249-3773-43db-983a-211c9af67704" />
+</Solution>
