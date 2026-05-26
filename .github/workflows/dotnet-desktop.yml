@@ -8,26 +8,33 @@ on:
 
 jobs:
   build:
+    name: Build & Test (${{ matrix.configuration }})
     runs-on: windows-latest
 
     strategy:
+      fail-fast: false
       matrix:
         configuration: [Debug, Release]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 10.0.x
-        
-    - name: Restore
-      run: dotnet restore MarcusRunge.slnx
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
 
-    - name: Build
-      run: dotnet build MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-restore
+      - name: Display .NET info
+        run: dotnet --info
 
-    - name: Test
-      run: dotnet test MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-build --verbosity normal
+      - name: Restore
+        run: dotnet restore MarcusRunge.slnx
+
+      - name: Build
+        run: dotnet build MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-restore /p:GeneratePackageOnBuild=false
+
+      - name: Test
+        run: dotnet test MarcusRunge.slnx --configuration ${{ matrix.configuration }} --no-build --verbosity normal
